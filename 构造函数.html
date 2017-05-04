@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function Active(country,city){
+				this.country=country;
+				this.city=city;
+				this.getName=function(){
+					return "欢迎来到"+this.country+"的"+this.city;
+				}
+			}
+			var active=new Active("中国","玉林");
+			console.log(active.getName());
+			console.log(Math.random()*10)
+		</script>
+	</body>
+</html>

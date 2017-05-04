@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#cc li{
+				padding: 5px;
+				color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			function xmlLoad(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Mcrosoft.XMLHTTP")
+				}
+				xmlhttp.onreadystatechange=function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+//						console.log("yes")
+//                      console.log(xmlhttp.responseText)
+                        console.log(xmlhttp.getResponseHeader("content-type"))
+                        function Tojson(str){
+                        	var json=eval('('+str+')');
+                        	return json;
+                        }
+                      var data=Tojson(xmlhttp.responseText);
+                      console.log(data)
+                      for(var i=0;i<data.result.list.length;i++){
+                      	  var a=data.result.list[i].datetime;
+                      	  var b=data.result.list[i].remark;
+//                    	  console.log(b)
+                         $("<li>"+a+"</li><li>"+b+"</li>").appendTo($("#cc"))
+                      }
+					}
+				}
+				xmlhttp.open("GET","kuaidi.json",true);
+				xmlhttp.send(null);
+			}
+		</script>
+		<input type="button" value="点击" onclick="xmlLoad()" />
+		<script type="text/javascript" src="jquery-1.12.4.js" ></script>
+		<ul id="cc"></ul>
+	</body>
+</html>

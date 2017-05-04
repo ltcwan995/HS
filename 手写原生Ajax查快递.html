@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#cx li{
+				list-style: none;
+				padding: 5px;
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			function xmlLoad(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Mcrosoft.XMLHTTP")
+				}
+				xmlhttp.onreadystatechange=function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+//						console.log(xmlhttp.responseText)
+                 function ToJSON(str){
+                 	var json=eval('('+str+')');
+                 	return json;
+                 }
+                 function reverse(arr){
+                 	return arr.reverse()
+                 }
+                 var data=ToJSON(xmlhttp.responseText);
+                 var res=data.result.list;
+                 var news=reverse(res);
+                 console.log(news)
+                 for(var i=0;news.length;i++){
+                 	var a=news[i].datetime;
+//               	console.log(a)
+                 	var b=news[i].remark;
+                 	$("<li>"+a+"</li><li>"+b+"</li>").appendTo($("#cx"))
+                 }
+					}
+				}
+				xmlhttp.open("GET","kuaidi.json","true");
+				xmlhttp.send();
+			}
+		</script>
+		<input type="button" value="查询" onclick="xmlLoad()" />
+		<ul id="cx"></ul>
+		<script type="text/javascript" src="jquery-1.12.4.js" ></script>
+	</body>
+</html>

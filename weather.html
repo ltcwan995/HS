@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 1265px;
+				height: 520px;
+				margin: 100px auto;
+			}
+			.today li{
+				background: #fafafa;
+				list-style: none;
+				width: 178px;
+				height:200px;
+				float: left;
+				border-right: 1px solid #CCCCCC ;
+			}
+			.future{
+				height: 200px;
+				position: absolute;
+				top:300px;
+				
+			}
+			.future ul{
+				float:left;
+				margin:25px;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.12.4.js" ></script>
+	</head>
+	<body>
+		<div class="box">
+			<select>
+				<option value="玉林">玉林</option>
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="广州">广州</option>
+				<option value="深圳">深圳</option>
+			</select>
+			<input type="button"  value="查询天气"/>
+			<ul class="today">
+				
+			</ul>
+			<ul class="future">
+				
+			</ul>
+		</div>
+		<script>
+			$("input").on("click",function(){
+				var city=encodeURIComponent($("select option:selected").val());
+				console.log(city);
+				$.ajax({
+					url:"http://v.juhe.cn/weather/index",
+					type:"get",
+					data:"cityname="+city+"&dtype=json&format=2&key=a91311b87d0953663b45b78d359dd1dd",
+					dataType:"jsonp",
+					success: function (data) {
+						console.log(data)
+						var a = data.result.today.date_y;
+                        var b = data.result.today.dressing_advice;
+                        var c=data.result.today.temperature;
+                        var d=data.result.today.weather;
+                        var e=data.result.today.week;
+                        var f=data.result.today.wind;
+					    for(var i=0;i<data.result.future.length;i++){
+                        var g= data.result.future[i].temperature;
+                        var h= data.result.future[i].weather;
+                        var j=data.result.future[i].week;
+                        var k=data.result.future[i].wind;
+                        console.log(g)
+                        $("<ul><li>星期："+j+"</li><li>天气："+h+"</li><li>气温："+g+"</li><li>风力："+k+"</li></ul>").appendTo(".future")
+                 }
+//                  console.log(data.result.future.day_20170105.temperature);
+                       $("<li>日期："+a+"</li><li>建议："+b+"</li><li>温度："+c+"</li><li>天气："+d+"</li><li>星期："+e+"</li><li>风力:"+f+"</li>").appendTo(".today");
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

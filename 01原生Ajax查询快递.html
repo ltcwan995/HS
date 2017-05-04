@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#result li{
+				list-style: none;
+				padding: 5px;
+				color: orangered;
+			}
+		</style>
+		<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+//  document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+     function strToJson(str){
+     var json = eval('(' + str + ')'); 
+     return json; 
+     } 
+     function rever(arr){
+     var newArr=arr.reverse();
+     return newArr;
+     }
+//   console.log(xmlhttp.responseText)
+   var data=strToJson(xmlhttp.responseText);
+     var Array=data.result.list;
+     var dataNew=rever(Array)
+//   console.log(data)
+    for(var i=0;i<dataNew.length;i++){
+                    var a = dataNew[i].datetime;
+                    var b = dataNew[i].remark;
+                  console.log(a);
+                  console.log(b);
+                $("<li>"+a+"</li><li>"+b+"</li>").appendTo($("#result"))
+//                  alert(data.reason)
+                }
+//  console.log(xmlhttp.responseText)
+    }
+  }
+xmlhttp.open("GET","kuaidi.json",true);
+xmlhttp.send(null);
+}
+</script>
+	</head>
+	<body>
+		<div id="myDiv"><h2>通过原生Ajax查询快递，</h2></div>
+        <button type="button" onclick="loadXMLDoc()">点击查询快递</button>
+        <ul id="result">
+        	
+        </ul>
+        <script type="text/javascript" src="jquery-1.12.4.js" ></script>
+	</body> 
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-itunes-app" content="app-id=537508092">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="wb:webmaster" content="3addc532fa0c656e" />
+<meta property="qc:admins" content="165746643563561676375" />
+<meta name="mobile-agent" content="format=html5;url=http://m.suning.com">
+<link rel="stylesheet" href="http://img.suning.cn/public/v3/css/??v3common.min.css,search.min.css,sn-sidebar.min.css?v=20151110043482">
+<link rel="stylesheet" type="text/css" href="http://res.suning.cn/project/cmsWeb/suning/homepage/v3/css/index.css?v=20151110043482"/>
+<![endif]-->
+</head>
+<body>
+<script>
+// 全局变量
+var sn = sn || {
+"context": '/emall',
+"domain": 'www.suning.com',
+"cityId":'9173',
+"storeId": '10052',
+"catalogId": '10051',
+"categoryId": '10051',
+"memberDomain": 'member.suning.com',
+"online": 'online.suning.com',
+"cookieDomain": '.suning.com',
+"searchDomain": 'http://search.suning.com/emall/',
+"scriptDomianDir": 'http://script.suning.cn',
+"apsDomainUrl":"http://th.suning.com",
+"smartDomain" :'http://iss.suning.com',
+"productDomain" : 'http://product.suning.com',
+"imgHost": 'http://image.suning.cn',
+"isHome": true,
+"isNewHome":true
+};
+// sidebar开关
+var sidebar_config = {
+cart: true,
+enable: true,
+member: true,
+message: false,
+fav: true,
+history: false
+};
+//宽窄屏切换
+var SCREEN = {};
+SCREEN.small = false;//750
+SCREEN.middle = false;//990
+SCREEN.large = false;//1190
+SCREEN.wider = false;//1690
+if (screen.width < 1190) {
+SCREEN.middle = true;
+} else {
+SCREEN.large = true;
+}
+var bigscreen = false;
+if ( screen.width>=1200 ) {
+bigscreen = true;
+var bodyTag = document.getElementsByTagName("body")[0],
+bodyClassName = bodyTag.getAttribute("className") || bodyTag.getAttribute("class");
+bodyClassName = bodyClassName ? bodyClassName+" " : "";
+bodyTag.className = bodyClassName+"root1200";
+}
+</script>
+<!-- 顶通开始 [[ -->
+<div id="__TOP_ACTIVE__" class="top-active">
+<!-- 开发给传2个高度，如果是顶通就传顶通高度，如果是富文本，就传富文本高度 -->
+<div id="TOP_ACTIVE_WRAP" class="top-active-wrap" style="height: px;" data-height=" px"></div>
+<a id="TOP_ACTIVE_BTN" class="btn" href="javascript:void(0);" title="关闭" name="index1_none_dtgg_gban04"></a>
+</div>
+<script>
+(function () {
+//获取cookie
+var strCookie = document.cookie,
+arrCookie = strCookie.split("; "),
+val = false;
+for (var i = 0, len = arrCookie.length; i < len; i++) {
+var arr = arrCookie[i].split("=");
+if ("topActiveStatus" == arr[0]) {
+val = arr[1];
+break;
+}
+}
+if (val) {
+document.getElementById('TOP_ACTIVE_WRAP').style.height = "0";
+document.getElementById('TOP_ACTIVE_BTN').className = "btn btn-open";
+document.getElementById('TOP_ACTIVE_BTN').setAttribute("title", "打开");
+document.getElementById('TOP_ACTIVE_BTN').setAttribute("name", "index1_none_dtgg_dkan05");
+}
+})();
+</script>
+<script type="text/javascript">
+var TOP_BANNER_DATA = {
+"99999":{"title":"双十一来啦 何止5折","name":"index2_none_dtgg_cs0100","bgColor":"#6e07de","link":"http://sale.suning.com/sc/o2ogwj2015/index.html","picNarrow":"http://image4.suning.cn/uimg/cms/img/144719051370525194.jpg","picWide":"http://image5.suning.cn/uimg/cms/img/144719051796952851.jpg"}
+};
+</script>
+<!-- 顶通结束 ]] -->
+<!--tool bar [[-->
+<a class="btn btn-down" href="javascript:void(0);"><i></i></a>
+</div>
+</div>
+<script type="text/javascript">
+function loadBanner(){
+if(typeof TOP_BANNER_DATA != "undefined"){
+var bannerData;
+var cityId=getBannerCookie("cityId");
+if(cityId in TOP_BANNER_DATA){
+bannerData=TOP_BANNER_DATA[cityId];
+}else if("99999" in TOP_BANNER_DATA){
+bannerData=TOP_BANNER_DATA[99999];
+}
+if(bannerData!=null){
+var picWide, picNarrow, picWideBg, picNarrowBg, nameWide, nameNarrow, titleWide, titleNarrow, hrefWide, hrefNarrow;
+picWide = bannerData.picWide;
+picWideBg = bannerData.bgColor;
+nameWide = bannerData.name;
+titleWide = bannerData.title;
+hrefWide = bannerData.link;
+picNarrow = bannerData.picNarrow;
+picNarrowBg = bannerData.bgColor;
+nameNarrow = bannerData.name;
+titleNarrow = bannerData.title;
+hrefNarrow = bannerData.link;
+var screenFlag = (SCREEN.large || SCREEN.wider) ? true : false;//判断宽屏或窄屏
+var tem = [
+{name: screenFlag ? nameWide : nameNarrow, href: screenFlag ? hrefWide : hrefNarrow, src: screenFlag ? picWide : picNarrow, title: screenFlag ? titleWide : titleNarrow, bg: screenFlag ? picWideBg : picNarrowBg}
+],
+topName = tem[0].name,
+topHref = tem[0].href,
+topSrc = tem[0].src,
+topTitle = tem[0].title,
+topBg = tem[0].bg;
+var html = '<a name="' + topName + '" target="_blank" title="' + topTitle + '" href="' + topHref + '">';
+html += '<img src="' + topSrc + '" />';
+html += '</a>';
+document.getElementById('TOP_ACTIVE_WRAP').innerHTML = html;
+document.getElementById('TOP_ACTIVE_WRAP').style.background = topBg;
+}else{
+document.getElementById('__TOP_ACTIVE__').style.display='none';
+}
+}
+}
+function getBannerCookie (b) {
+var a;
+return (a = document.cookie.match(RegExp("(^| )" + b + "=([^;]*)(;|$)"))) ? decodeURIComponent(a[2]
+.replace(/\+/g, "%20"))
+: null
+};
+loadBanner();
+</script>
+<!-- 弹窗广告 维护广告时，输出此dom文档，没有则不输出 [[ -->
+<!-- 如果是新人弹窗，需要维护一个标识【有任意值即可】，否则是促销弹窗 -->
+<div class="recmd-active">
+<div class="btn btn-open" title="" name=""> </div>
+<div class="pic">
+<a name="index2_none_tk_cx" href="#"  title="双十一来啦 何止5折"><img src="img/144717047284379789.png" alt="双十一来啦 何止5折"></a>
+</div>
+</div>
+<!-- 弹窗广告 ]] -->
+<!-- 新用户的时候弹框提示 [[-->
+<!-- 新用户的时候弹框提示 ]]-->
+<!-- tab切第一组 广告[[ -->
+<div class="main-col J-domLazy" style="display: block;">
+</div>
+<!-- tab切第一组 广告]] -->
+<!-- tab切第二组 单品[[ -->
+<!-- tab切第二组 单品]] jsModelId-->
+<script type="text/html" id="jsModel_4796_11">
+<ul class="prd-list">
+<% for ( var i = 0; i < data.length; i++ ) { %>
+<% if (i < 5){ %>
+<li <%=data[i].sku%>>
+<p class="face"><a expoType="1" expo="<%=data[i].expo%>" id="<%=data[i].id%>" name="<%=data[i].trickPointP%>" href="<%=data[i].href%>" rel="nofollow" target="_blank" title="<%=data[i].name%>"><img src="<%=data[i].pic%>" alt="<%=data[i].name%>"/></a></p>
+<p class="name"><a href="<%=data[i].href%>" rel="nofollow" target="_blank"><%=data[i].name%></a></p>
+<p class="price"></p>
+</li>
+<% } %>
+<%}%>
+</ul>
+<ul class="prd-list">
+<% for ( var i = 0; i < data.length; i++ ) { %>
+<% if ((i > 4) && (i < 10)){ %>
+<li <%=data[i].sku%>>
+<p class="face"><a expoType="1" expo="<%=data[i].expo%>" id="<%=data[i].id%>" name="<%=data[i].trickPointP%>" rel="nofollow" href="<%=data[i].href%>" target="_blank" title="<%=data[i].name%>"><img src="<%=data[i].pic%>" alt="<%=data[i].name%>"/></a></p>
+<p class="name"><a href="<%=data[i].href%>" rel="nofollow" target="_blank"><%=data[i].name%></a></p>
+<p class="price"></p>
+</li>
+<% } %>
+<% } %>
+</ul>
+</script>
+</div>
+</div>
+<div class="wrapper floor floor10">
+<div class="floor-head clearfix">
+<div class="title">
+<!-- tab切第一组 广告[[ -->
+<div class="main-col J-domLazy" style="display: block;">
+</div>
+<!-- tab切第一组 广告]] -->
+<!-- tab切第二组 单品[[ -->
+<div class="main-col J-domLazy"
+>
+<script type="text/html" >
+</script>
+</div>
+<!-- tab切第二组 单品]] jsModelId-->
+<script type="text/html" id="jsModel_4796_21">
+<ul class="prd-list">
+<% for ( var i = 0; i < data.length; i++ ) { %>
+<% if (i < 5){ %>
+<li <%=data[i].sku%>>
+<p class="face"><a expoType="1" expo="<%=data[i].expo%>" id="<%=data[i].id%>" name="<%=data[i].trickPointP%>" href="<%=data[i].href%>" rel="nofollow" target="_blank" title="<%=data[i].name%>"><img src="<%=data[i].pic%>" alt="<%=data[i].name%>"/></a></p>
+<p class="name"><a href="<%=data[i].href%>" rel="nofollow" target="_blank"><%=data[i].name%></a></p>
+<p class="price"></p>
+</li>
+<% } %>
+<%}%>
+</ul>
+<ul class="prd-list">
+<% for ( var i = 0; i < data.length; i++ ) { %>
+<% if ((i > 4) && (i < 10)){ %>
+<li <%=data[i].sku%>>
+<p class="face"><a expoType="1" expo="<%=data[i].expo%>" id="<%=data[i].id%>" name="<%=data[i].trickPointP%>" rel="nofollow" href="<%=data[i].href%>" target="_blank" title="<%=data[i].name%>"><img src="<%=data[i].pic%>" alt="<%=data[i].name%>"/></a></p>
+<p class="name"><a href="<%=data[i].href%>" rel="nofollow" target="_blank"><%=data[i].name%></a></p>
+<p class="price"></p>
+</li>
+<% } %>
+<% } %>
+</ul>
+</script>
+</div>
+</div>
+<!-- 苏宁社区开始 [[ -->
+<script src="http://res.suning.cn/public/v3/js/jquery.js?v=20151110043482"></script>
+<script>
+var sa;if(!sa){sa={}}if(!sa.click){sa.click={}}(function(){var u=/\.suning\.com/,t=document.location.hostname,h=(("https:"==document.location.protocol)?"https://":"http://"),p=i(),b="|",c=location.href,n=m(q(c));function r(aa,N){try{var Z=aa.name?m(aa.name):"name undefined";if(Z=="name undefined"){var ab=aa.attributes.name;if(ab!=undefined&&ab!=null){Z=ab.value?m(ab.value):"name undefined"}}if(N!=undefined&&N!=null&&N!=""){var K=aa.attributes[N];if(K!=undefined&&K!=null){Z=K.value?m(K.value):N+" undefined"}}var O=aa.id?m(aa.id):"id undefined",R=new Array(),A=(f(aa,R),R)?m(R.join("").replace(/\s|\|/ig,"")):"text undefined",U=(U=document.getElementById("resourceType"))?U.value:"",B=O+b+Z+b+A,S=(S=document.getElementById("errorCode"))?S.value:"",X=h+p+"/ajaxClick.gif",z=v(),k="_snck";l(k,z,"/","","");var Y=d();var E=typeof sn=="object"?sn.cityId:"can not get cityId",J=z+b+Y+b+B+b+n,W=aa.href?aa.href:"",I=(W?x(W):"-"),L=document.getElementById("URLPattern"),Q=(L?L.value:"");var D="";var G=o("logonStatus");if(G!=undefined&&G!=null){D=G}var F="";var j=o("_snma");if(j!=undefined&&j!=null&&j.indexOf("|")>=0){try{F=j.split("|")[1]}catch(V){}}var C="";var y=o("idsLoginUserIdLastTime");if(y!=undefined&&y!=null){C=y}var T="";var P=o("custno");if(P!=undefined&&P!=null){T=P}var M="";var ac=o("_snmb");if(ac!=undefined&&ac!=null&&ac.indexOf("|")>=0){try{M=ac.split("|")[0]}catch(V){}}var H=X+"?_snmk="+J+"&_snme="+S+"&_type="+U+"&_cId="+E+"&_sid="+I+"&urlPattern="+Q+"&vid="+F+"&lu="+C+"&sid="+M+"&mid="+T+"&ls="+D;w(H)}catch(V){}}function d(){if(!sa.pvId){sa.pvId=v()}return sa.pvId}function v(){try{var k=new Date(),j=Math.round(100000*Math.random()),z=k.getTime().toString().concat(j);return z}catch(y){}}function o(k){var j=document.cookie.split("; ");for(var y=0;y<j.length;y++){var z=j[y].split("=");if(z[0]==k){return unescape(z[1])}}}function w(j){var y="log_"+(new Date()).getTime();var k=window[y]=new Image();k.onload=(k.onerror=function(){window[y]=null});k.src=j+"&iId="+y;k=null}function i(){if(u.test(t)){return"click.suning.cn/sa"}else{return"clicksit.suning.cn/sa"}}function e(){return document.domain}function l(k,j,D,C,B){try{var A=k+"="+escape(j);if(C!=""){var z=new Date();z.setTime(z.getTime()+C);A+=";expires="+z.toGMTString()}if(D!=""){A+=";path="+D}var y=e();if(y.indexOf(".suning.com")!=-1){A+=";domain=.suning.com"}else{if(y.indexOf(".cnsuning.com")!=-1){A+=";domain=.cnsuning.com"}else{A+=";domain="+B}}document.cookie=A}catch(B){}}function x(k){var j="-";if(!a(k)){j=g(k,"tid","&")}return j}function q(j){try{if(j.length>301){j=j.substring(0,300)}while(j.indexOf(b)!=-1){j=j.replace(b,"--")}return j}catch(k){}}function f(z,k){try{if(z.nodeType==3){k.push(z.nodeValue)}else{if(z.nodeType==1){for(var j=z.firstChild;j!=null;j=j.nextSibling){f(j,k)}}}}catch(y){}}function m(j){return j!=null?encodeURIComponent(j):""}function g(y,k,B){try{var A="-",j;if(!a(y)&&!a(k)&&!a(B)){j=y.indexOf(k);if(j>-1){var z=y.indexOf(B,j);if(z<0){z=y.length}A=y.substring(j+k.length+1,z)}}return A}catch(z){}}function a(j){return(undefined==j||""==j||"-"==j)}var s=sa.click;s.sendDatasIndex=r})();
+$(document).ready(function(){
+$("a[name^=index],h5[name^=index],h4[name^=index],h3[name^=index],h2[name^=index],h1[name^=index],li[name^=index],div[name^=index],label[name^=index],input[name^=index],span[name^=index]").live("click",function(){
+try {
+sa.click.sendDatasIndex(this);
+} catch(e){
+}
+});
+})
+</script>
+<script type="text/javascript">
+function _getJsFilePath(js_file){
+var _hostName = document.location.hostname;
+// 一般生产环境的域名
+var _prd_reg = /^\w*?.suning.com$/;
+// 一般pre环境的域名
+var _pre_reg = /^\w*?pre.cnsuning.com$/;
+// 一般sit环境的域名
+var _sit_reg = /^\w*?sit.cnsuning.com$/;
+var sa_src = "";
+if(_prd_reg.test(_hostName)){
+sa_src = ("https:" == document.location.protocol) ? "https://imgssl.suning.com" : "http://script.suning.cn";
+} else if(_pre_reg.test(_hostName)){
+sa_src = ("https:" == document.location.protocol) ? "https://preimgssl.suning.com" : "http://prescript.suning.cn";
+} else if(_sit_reg.test(_hostName)){
+sa_src = ("https:" == document.location.protocol) ? "https://sit1imgssl.suning.com" : "http://sit1script.suning.cn";
+} else {
+sa_src = ("https:" == document.location.protocol) ? "https://preimgssl.suning.com" : "http://prescript.suning.cn";
+}
+sa_src = sa_src + "/javascript/sn_da/"+js_file;
+return sa_src;
+}
+var isArray = function(obj) {
+return Object.prototype.toString.call(obj) === '[object Array]';
+}
+var windowOnLoadEventQueue = [];
+var scriptOnLoadEventQueue = [];
+window.onload = function() {
+for ( var aFunc in windowOnLoadEventQueue) {
+windowOnLoadEventQueue[aFunc]();
+}
+}
+function addOnLoad(func) {
+windowOnLoadEventQueue = windowOnLoadEventQueue.concat(func);
+}
+var lazyScriptMap = {};
+function lazyLoadScript(src, callback) {
+if (!lazyScriptMap[src]) {
+lazyScriptMap[src] = callback;
+var scriptNode = document.createElement("script");
+if ('function' === typeof callback) {
+if (!/msie/i.test(navigator.userAgent.toLowerCase())) {
+scriptNode.onload = callback;
+}
+scriptNode.onreadystatechange = function() {
+if ("loaded" == scriptNode.readyState
+|| "complete" == scriptNode.readyState) {
+callback();
+}
+}
+} else if (isArray(callback)) {
+var callbackSequence = function() {
+for ( var i = 0; i < callback.length; i++) {
+(callback[i])();
+}
+};
+scriptNode.onload = callbackSequence;
+scriptNode.onreadystatechange = function() {
+if ("loaded" == scriptNode.readyState
+|| "complete" == scriptNode.readyState) {
+callbackSequence();
+}
+}
+}
+scriptNode.type = "text/javascript";
+scriptNode.src = src;
+var scriptContainer = document.getElementsByTagName("head")[0];
+scriptContainer.appendChild(scriptNode);
+} else {
+}
+}
+function lazyLoadScripts(srcs, callback) {
+var srcNum = srcs.length;
+var loadingProgress = 0;
+if (srcNum > 0) {
+for ( var i = 0; i < srcNum; i++) {
+var currSrc = srcs[i];
+lazyLoadScript(currSrc, function() {
+loadingProgress++;
+if (srcNum == loadingProgress) {
+if ('function' === typeof callback) {
+callback();
+} else if (isArray(callback)) {
+for ( var i = 0; i < callback.length; i++) {
+(callback[i])();
+}
+}
+}
+});
+}
+}
+}
+var isTimeout = false;
+var lazyLoadFunction = null;
+var lazyScriptLoaded = false;
+var lazyScriptTimeout = 2000;
+lazyloadBindingFuc = function() {
+}
+lazyLoadFunction = function() {
+if (lazyScriptLoaded && isTimeout) {
+lazyLoadScript(_getJsFilePath("da_opt.js"));
+return;
+}
+lazyScriptLoaded = true;
+if (isTimeout) {
+lazyLoadScript(
+"http://res.suning.cn/public/v3/js/search.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/public/v3/js/SFE.base.min.js?v=20151110043482",
+function(){
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v1/js/a_load_m_g.js?v=20151110043482",
+function (){
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v1/js/a_load_t_pv.js?v=20151110043482",
+function(){
+lazyLoadScript("http://res.suning.cn/public/v3/js/lazyelem.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v3/js/index.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/public/sidebar/build/js/sn-sidebar.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/project/yunxin/js/chatCompat_mini.js?v=20151110043482");
+lazyLoadScript(_getJsFilePath("da_opt.js"));
+lazyLoadScript("http://script.suning.cn/javascript/sn_pf/agent_js/performance_agent.js?v=20151110043482");
+});
+});
+});
+});
+});
+});
+});
+} else {
+lazyLoadScript(
+"http://res.suning.cn/public/v3/js/search.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/public/v3/js/SFE.base.min.js?v=20151110043482",
+function(){
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v1/js/a_load_m_g.js?v=20151110043482",
+function (){
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v1/js/a_load_t_pv.js?v=20151110043482",
+function(){
+lazyLoadScript("http://res.suning.cn/public/v3/js/lazyelem.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/project/cmsWeb/suning/homepage/v3/js/index.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/public/sidebar/build/js/sn-sidebar.min.js?v=20151110043482",
+function() {
+lazyLoadScript("http://res.suning.cn/project/yunxin/js/chatCompat_mini.js?v=20151110043482");
+lazyLoadScript(_getJsFilePath("da_opt.js"));
+lazyLoadScript("http://script.suning.cn/javascript/sn_pf/agent_js/performance_agent.js?v=20151110043482");
+});
+});
+});
+});
+});
+});
+});
+}
+}
+addOnLoad(lazyloadBindingFuc);
+addOnLoad(lazyLoadFunction);
+function checkLazyScriptTimeout() {
+isTimeout = true;
+if (!lazyScriptLoaded) {
+if (!!lazyLoadFunction) {
+lazyLoadFunction();
+} else {
+setTimeout(checkLazyScriptTimeout, 1000);
+}
+}
+}
+setTimeout(checkLazyScriptTimeout, lazyScriptTimeout);
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.12.4.js" ></script>
+    <script>
+    	$(function(){
+    		loading();
+    	})
+    </script>
+    <style>
+    	.dv{
+    		width: 40px;
+    		height: 40px;
+    		background: yellow;
+    	}
+    	.loading{
+    		display: none;
+    		position: absolute;
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.loading center{
+    		width: 100px;
+    		height: 100px;
+    		position: absolute;
+    		left: 50%;
+    		top: 50%;
+    		margin-left: -50px;
+    		margin-top: -50px;
+    	}
+    </style>
+</head>
+<body>
+<div class="loading"><center><img src='img/loading.gif' /><p>正在努力加载中...</p></center></div>
+<ul>
+    
+</ul>
+<script>
+    //同源：域名、协议、端口都相同
+    //否则：跨域
+    //（ajax不能跨域）
+    
+   	 function loading(){
+   	 	$.ajax({
+            //url:一个用来包含发送请求的URL字符串。
+            url:"kuaidi.json",
+            type:"GET",
+            dataType:"json",
+        beforeSend:function(XMLHttpRequest){
+//      	console.log(1);
+        	$(".loading").fadeIn();
+        	$("ul").html("");
+      },
+            success: function (data) {
+                for(var i=0;i<data.result.list.length;i++){
+                    var a = data.result.list[i].datetime;
+                    var b = data.result.list[i].remark;
+                    $("<li>"+a+"</li><li>"+b+"</li>").appendTo("ul");
+                }
+            },
+            complete:function(XMLHttpRequest){
+            	console.log(1);
+  	        $(".loading").fadeOut();
+   },
+       });
+   	 }
+
+
+</script>
+</body>
+</html>

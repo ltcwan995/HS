@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="跳转"/>
+		<script>
+			window.onload=function(){
+				function newO(){
+				var btn=document.getElementsByTagName("input")[0];
+				btn.onclick=function(){
+//					window.location.href="https://www.baidu.com"
+                     window.location.reload();
+				}
+			}
+			newO()
+			}
+		</script>
+	</body>
+</html>

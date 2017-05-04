@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function xmlLoad(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Mcrosoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+//						console.log(xmlhttp.responseText)
+                 function Tojson(str){
+                 	var json=eval('('+str+')');
+                 	return json;
+                 }
+               var data=Tojson(xmlhttp.responseText);
+//             console.log(data)
+                for(var i=0;data.result.list.length;i++){
+                	var a=data.result.list[i].datetime;
+                	var b=data.result.list[i].remark;
+                	$("<li>"+a+"</li><li>"+b+"</li>").appendTo($("#result"))
+                }
+					}
+				}
+			xmlhttp.open("GET","kuaidi.json","true");
+			xmlhttp.send();
+			}
+		</script>
+		<input type="button" value="查询快递" onclick="xmlLoad()" />
+		<ul id="result"></ul>
+		<script type="text/javascript" src="jquery-1.12.4.js" ></script>
+	</body>
+</html>

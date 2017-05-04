@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    *{
+    	margin: 0;
+    	padding: 0;
+    }
+    .cx{
+    	width: 400px;
+    	height:100%;
+    	position: absolute;
+    	border: 1px solid gainsboro;
+    }
+    	#box{
+    		height:100%;
+    		width: 400px;
+    		border: 1px solid whitesmoke;
+    		display: none;
+    		position: absolute;
+    		display: none;
+    	}
+    	#com{
+    		position: absolute;
+    		left:100px;
+    		top:20px;
+    	}
+    	#no{
+    		position: absolute;
+    		top: 50px;
+    		left:100px
+    	}
+    	input[type=button]{
+    		position: absolute;
+    		top:50px;
+    		left:260px;
+    		background: deepskyblue;
+    		cursor: pointer;
+    	}
+    	#kd{
+    		width: 400px;
+    	}
+    	#kd li{
+    		display: block;
+    		height: 58px;
+    		width: 90px;
+    		float: left;
+    		line-height:58px;
+    		text-align: center;
+    		cursor: pointer;
+    		margin: 2px;
+    	}
+    	#kd li:hover{
+    		background: skyblue;
+    	}
+    	#cc li{
+    		font: 12px "微软雅黑";
+    	}
+    	#cc{
+    		width: 400px;
+    		height: 100%;
+    		position: absolute;
+    		top:800px;
+    	}
+    	#xx{
+    		position: absolute;
+    		top:380px;
+    	}
+    	.loading{
+    		display: none;
+    		position: absolute;
+    		top:380px;
+    	}
+    </style>
+    <script type="text/javascript" src="jquery-1.12.4.js" ></script>
+</head>
+<body>
+	<div class="cx">
+		<div id="box">
+		<input type="text" placeholder="请输入你的快递单号" id="no"/>
+	<select id="com">
+		<option value="sf">顺丰</option>
+		<option value="sto">申通</option>
+		<option value="yt">圆通</option>
+		<option value="yd">韵达</option>
+		<option value="ems">EMS</option>
+		<option value="zto">中通</option>
+	</select>
+    <input type="button" value="查询">
+	</div>
+	<ul id="kd">
+		<li>中通</li>
+		<li>圆通</li>
+		<li>申通</li>
+		<li>顺丰</li>
+		<li>邮政</li>
+		<li>EMS</li>
+		<li>韵达</li>
+		<li>中通</li>
+		<li>中通</li>
+		<li>中通</li>
+		<li>中通</li>
+		<li>中通</li>
+	</ul>
+	<ul id="xx">
+    </ul>
+    <div class="loading"><center><img src='img/loading.gif' /><p>正在努力查询中...</p></center></div>
+	</div>
+	
+<script>
+    $("input[type=button]").click(function () {
+    	var num=$("#no").val();
+    	var com=$("#com option:selected").val();
+        $.ajax({
+            url:"http://v.juhe.cn/exp/index",
+            type:"get",
+            data:"key=ed2338e6dd42cf01bf70e10b7ced9178&com="+com+"&no="+num,
+            dataType:"jsonp",
+             beforeSend:function(XMLHttpRequest){
+//      	console.log(1);
+        	$(".loading").fadeIn();
+        	$("#xx").html("");
+      },
+            success: function (data) {
+              for(var i=0;i<data.result.list.length;i++){
+                  var a = data.result.list[i].datetime;
+                  var b = data.result.list[i].remark;
+                  $("<li>"+a+"</li><li>"+b+"</li>").appendTo("#xx");
+              }
+console.log(data);
+            },
+            complete:function(XMLHttpRequest){
+            	console.log(1);
+  	        $(".loading").fadeOut();
+   },
+        })
+    })
+    $(function(){
+    	$("#kd>li").on("click",function(){
+    		$("#box").slideDown(800);
+    		$("#kd").offset({top:120});
+    	})
+    })
+  
+    
+</script>
+</body>
+</html>

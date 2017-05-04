@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		Array.prototype.unique=function(){
+			var res=[];
+			var json={};
+			for(var i=0;i<this.length;i++){
+				if(!json[this[i]]){
+					res.push(this[i])
+					json[this[i]]=2;
+				}
+			}
+			return res;
+		}
+		
+		Array.prototype.unique1=function(){
+			var res=[];
+			for(var i=0;i<this.length;i++){
+				var repeat=false;
+				for(var j=0;j<res.length;j++){
+					if(this[i]==res[j]){
+						repeat=true;
+						break;
+					}
+				}
+				if(!repeat){
+						res.push(this[i])
+				}
+			}
+			return res;
+		}
+		var arr=[1,2,2,3,4,666,777,6,6,6,7,8,7,9,0]
+		var arr1=[1,2,3,3,4,888,6666,22,2234,6,7,8,7,9,0]
+			console.log(arr.unique())
+			console.log(arr1.unique1())
+		</script>
+	</body>
+</html>
